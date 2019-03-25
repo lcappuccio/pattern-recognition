@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
@@ -25,6 +26,22 @@ public class CollinearPointsUtilTest {
 		expectedException.expect(IllegalArgumentException.class);
 		//noinspection ConstantConditions
 		CollinearPointsUtil.isPointSetCollinear(null);
+	}
+
+	@Test
+	public void empty_list() {
+		expectedException.expect(IllegalArgumentException.class);
+		CollinearPointsUtil.isPointSetCollinear(Collections.<Point>emptyList());
+	}
+
+	@Test
+	public void point_is_collinear_with_itself() {
+		final Point point = new Point(0, 0);
+		final List<Point> pointList = Collections.singletonList(point);
+
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+
+		assertTrue("Point is collinear with itself", isPointSetCollinear);
 	}
 
 	@Test

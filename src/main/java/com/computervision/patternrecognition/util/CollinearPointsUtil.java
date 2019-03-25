@@ -19,11 +19,11 @@ public class CollinearPointsUtil {
 	 */
 	public static boolean isPointSetCollinear(final List<Point> pointList) {
 
-		if (pointList == null) {
+		if (pointList == null || pointList.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
 
-		if (pointList.size() == 2) {
+		if (pointList.size() <= 2) {
 			return true;
 		}
 
