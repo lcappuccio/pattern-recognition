@@ -1,16 +1,17 @@
 package com.computervision.patternrecognition.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * 25/03/2019 14:23
- */
-public class Points {
+public class Points implements Serializable {
 
+	private static final long serialVersionUID = -6529860208081860865L;
 	private final List<Point> pointList = new ArrayList<>();
+
+	public Points() {}
 
 	public Points(final List<Point> pointList) {
 		for (final Point point: pointList) {
