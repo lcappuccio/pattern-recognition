@@ -2,6 +2,7 @@ package com.computervision.patternrecognition.util;
 
 import Jama.Matrix;
 import com.computervision.patternrecognition.model.Point;
+import com.computervision.patternrecognition.model.Points;
 
 import java.util.List;
 
@@ -14,12 +15,18 @@ public class CollinearPointsUtil {
 	 * A set of three or more distinct points are collinear if and only if, the matrix of the coordinates of these
 	 * vectors is of rank 1 or less. (source: https://en.wikipedia.org/wiki/Collinearity)
 	 *
-	 * @param pointList a {@link List<Point>} to determine collinearity
+	 * @param points a {@link Points} to determine collinearity
 	 * @return true if collinear
 	 */
-	public static boolean isPointSetCollinear(final List<Point> pointList) {
+	public static boolean isPointSetCollinear(final Points points) {
 
-		if (pointList == null || pointList.isEmpty()) {
+		if (points == null) {
+			throw new IllegalArgumentException();
+		}
+
+		final List<Point> pointList = points.getPointList();
+
+		if (pointList.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
 
@@ -42,7 +49,7 @@ public class CollinearPointsUtil {
 	 */
 	private static double[][] pointListToMatrix(final List<Point> pointList) {
 
-		double[][] pointsMatrix = new double[pointList.size()][2];
+		final double[][] pointsMatrix = new double[pointList.size()][2];
 		for (int i = 0; i < pointList.size(); i++) {
 			final Point point = pointList.get(i);
 			pointsMatrix[i][0] = point.getX();
