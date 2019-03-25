@@ -68,4 +68,19 @@ public class SpaceControllerTest {
 
 		verify(mockPoints).addPoint(point);
 	}
+
+	@Test
+	public void get_points() throws Exception {
+		// hack SerializationFeature.FAIL_ON_EMPTY_BEANS apparently not working in spring 2.1.3
+		sut.perform(MockMvcRequestBuilders.get("/space")).andExpect(status().is(HttpStatus.OK.value()));
+
+		verify(mockPoints).getPointList();
+	}
+
+	@Test
+	public void remove_all_points() throws Exception {
+		sut.perform(MockMvcRequestBuilders.delete("/space")).andExpect(status().is(HttpStatus.OK.value()));
+
+		verify(mockPoints).clear();
+	}
 }
