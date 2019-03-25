@@ -1,6 +1,7 @@
 package com.computervision.patternrecognition.util;
 
 import com.computervision.patternrecognition.model.Point;
+import com.computervision.patternrecognition.model.Points;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,11 @@ public class SetCombinatoryUtil {
 	 * @param pointList
 	 * @return all sets of size {@param setSize} or more than can be obtained from {@param pointList}
 	 */
-	public static List<List<Point>> getSubsetsOfGivenSizeOrMore(final int setSize, final List<Point> pointList) {
+	public static List<Points> getSubsetsOfGivenSizeOrMore(final int setSize, final Points pointList) {
 
-		final List<List<Point>> allPossibleSubsets = new ArrayList<>();
+		final List<Points> allPossibleSubsets = new ArrayList<>();
 
-		for (int i = setSize; i < pointList.size(); i++) {
+		for (int i = setSize; i < pointList.getPointList().size(); i++) {
 			allPossibleSubsets.addAll(getSubsetsOfGivenSize(i, pointList));
 		}
 
@@ -34,25 +35,25 @@ public class SetCombinatoryUtil {
 	 * https://stackoverflow.com/questions/29910312/algorithm-to-get-all-the-combinations-of-size-n-from-an-array-java
 	 *
 	 * @param combinationSize the amount of {@link Point} in each set
-	 * @param pointList
+	 * @param points
 	 * @return
 	 */
-	static List<List<Point>> getSubsetsOfGivenSize(final int combinationSize, final List<Point> pointList) {
+	static List<Points> getSubsetsOfGivenSize(final int combinationSize, final Points points) {
 
-		final List<List<Point>> subsets = new ArrayList<>();
+		final List<Points> subsets = new ArrayList<>();
 
 		// indexes pointing to elements
 		int[] positionIndex = new int[combinationSize];
 
-		if (combinationSize < pointList.size()) {
+		if (combinationSize < points.getPointList().size()) {
 			for (int i = 0; (positionIndex[i] = i) < combinationSize - 1; i++) ;
-			final List<Point> subset = getSubset(pointList, positionIndex);
+			final Points subset = getSubset(points, positionIndex);
 			subsets.add(subset);
 			for (; ; ) {
 				int i;
 				// find position of item that can be incremented
 				for (i = combinationSize - 1;
-				     i >= 0 && positionIndex[i] == pointList.size() - combinationSize + i;
+				     i >= 0 && positionIndex[i] == points.getPointList().size() - combinationSize + i;
 				     i--);
 				if (i < 0) {
 					break;
@@ -63,7 +64,7 @@ public class SetCombinatoryUtil {
 				for (++i; i < combinationSize; i++) {
 					positionIndex[i] = positionIndex[i - 1] + 1;
 				}
-				final List<Point> subsetOther = getSubset(pointList, positionIndex);
+				final Points subsetOther = getSubset(points, positionIndex);
 				subsets.add(subsetOther);
 			}
 		}
@@ -78,11 +79,12 @@ public class SetCombinatoryUtil {
 	 * @param subset    the array with the index position of the set (e.g. 0-1-2, 0-1-3, 0-2-3, 1-2-3)
 	 * @return
 	 */
-	private static List<Point> getSubset(List<Point> pointList, int[] subset) {
+	private static Points getSubset(Points pointList, int[] subset) {
 		final List<Point> result = new ArrayList<>(subset.length);
-		for (int i = 0; i < subset.length; i++)
-			result.add(i, pointList.get(subset[i]));
+		for (int i = 0; i < subset.length; i++) {
+			result.add(i, pointList.getPointList().get(subset[i]));
+		}
 
-		return result;
+		return new Points(result);
 	}
 }

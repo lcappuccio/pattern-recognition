@@ -1,13 +1,13 @@
 package com.computervision.patternrecognition.util;
 
 import com.computervision.patternrecognition.model.Point;
+import com.computervision.patternrecognition.model.Points;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
@@ -31,28 +31,17 @@ public class CollinearPointsUtilTest {
 	@Test
 	public void empty_list() {
 		expectedException.expect(IllegalArgumentException.class);
-		CollinearPointsUtil.isPointSetCollinear(Collections.<Point>emptyList());
+		CollinearPointsUtil.isPointSetCollinear(new Points(Collections.emptyList()));
 	}
 
 	@Test
 	public void point_is_collinear_with_itself() {
 		final Point point = new Point(0, 0);
-		final List<Point> pointList = Collections.singletonList(point);
+		final Points points = new Points(Collections.singletonList(point));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
 		assertTrue("Point is collinear with itself", isPointSetCollinear);
-	}
-
-	@Test
-	public void two_points_are_always_collinear() {
-		final Point pointA = new Point(0, 0);
-		final Point pointB = new Point(0.1, 0.2);
-		final List<Point> pointList = Arrays.asList(pointA, pointB);
-
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
-
-		assertTrue("Two points are always collinear", isPointSetCollinear);
 	}
 
 	@Test
@@ -61,9 +50,9 @@ public class CollinearPointsUtilTest {
 		final Point pointA = new Point(0, 0);
 		final Point pointB = new Point(1, 1);
 		final Point pointC = new Point(2, 2);
-		final List<Point> pointList = Arrays.asList(pointA, pointB, pointC);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -75,9 +64,9 @@ public class CollinearPointsUtilTest {
 		final Point pointB = new Point(1, 1);
 		final Point pointC = new Point(2, 2);
 		final Point pointNegatives = new Point(-2, -2);
-		final List<Point> pointList = Arrays.asList(pointA, pointB, pointC, pointNegatives);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointNegatives));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -89,9 +78,9 @@ public class CollinearPointsUtilTest {
 		final Point pointB = new Point(-1, -1);
 		final Point pointC = new Point(-2, -2);
 		final Point pointNegatives = new Point(-8, -8);
-		final List<Point> pointList = Arrays.asList(pointA, pointB, pointC, pointNegatives);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointNegatives));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -102,9 +91,9 @@ public class CollinearPointsUtilTest {
 		final Point pointA = new Point(0, 0);
 		final Point pointB = new Point(1, 1);
 		final Point pointC = new Point(1, 3);
-		final List<Point> pointList = Arrays.asList(pointA, pointB, pointC);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(pointList);
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
 		assertFalse("Point set is not collinear but returns true", isPointSetCollinear);
 	}

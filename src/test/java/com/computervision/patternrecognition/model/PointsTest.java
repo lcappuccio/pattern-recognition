@@ -4,25 +4,48 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static junit.framework.TestCase.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * 25/03/2019 14:25
  */
 public class PointsTest {
 
-	private final Points sut = new Points();
+	private final Points sut = new Points(Collections.emptyList());
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
 	@Test
+	public void should_add() {
+		final Point point = new Point(0,0);
+		sut.addPoint(point);
+
+		assertTrue(sut.getPointList().contains(point));
+		assertEquals(1, sut.getPointList().size());
+	}
+
+	@Test
 	public void should_not_add_duplicates() {
 		final Point point = new Point(0,0);
+		sut.addPoint(point);
 
-		assertTrue(sut.addPoint(point));
-		assertFalse(sut.addPoint(point));
-		assertEquals(1, sut.getPointList().size());
+		expectedException.expect(IllegalArgumentException.class);
+		sut.addPoint(point);
+	}
+
+	@Test
+	public void should_not_add_duplicates_from_constructor() {
+		final Point point = new Point(0,0);
+		final List<Point> pointList = Arrays.asList(point, point);
+
+		expectedException.expect(IllegalArgumentException.class);
+		final Points sut = new Points(pointList);
 	}
 
 	@Test
