@@ -45,12 +45,40 @@ public class CollinearPointsUtilTest {
 	}
 
 	@Test
-	public void should_be_collinear() {
+	public void should_be_collinear_set1() {
 
 		final Point pointA = new Point(0, 0);
 		final Point pointB = new Point(1, 1);
 		final Point pointC = new Point(2, 2);
-		final Points points = new Points(Arrays.asList(pointA, pointB, pointC));
+		final Points points = new Points(Arrays.asList(pointB, pointA, pointC));
+
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+
+		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
+	}
+
+	@Test
+	public void should_be_collinear_set2() {
+
+		final Point pointA = new Point(0, 1);
+		final Point pointB = new Point(1, 2);
+		final Point pointC = new Point(2, 3);
+		final Point pointD = new Point(3, 4);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointD));
+
+		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+
+		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
+	}
+
+	@Test
+	public void should_be_collinear_set3() {
+
+		final Point pointA = new Point(1, 2);
+		final Point pointB = new Point(3, 4);
+		final Point pointC = new Point(5, 6);
+		final Point pointD = new Point(7, 8);
+		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointD));
 
 		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
 
@@ -74,7 +102,7 @@ public class CollinearPointsUtilTest {
 	@Test
 	public void should_be_collinear_only_negatives() {
 
-		final Point pointA = new Point(0, 0);
+		final Point pointA = new Point(-10, -10);
 		final Point pointB = new Point(-1, -1);
 		final Point pointC = new Point(-2, -2);
 		final Point pointNegatives = new Point(-8, -8);
@@ -89,7 +117,7 @@ public class CollinearPointsUtilTest {
 	public void should_not_be_collinear() {
 
 		final Point pointA = new Point(0, 0);
-		final Point pointB = new Point(1, 1);
+		final Point pointB = new Point(4, -1);
 		final Point pointC = new Point(1, 3);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC));
 

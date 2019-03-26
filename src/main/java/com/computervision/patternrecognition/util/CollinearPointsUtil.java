@@ -38,7 +38,7 @@ public class CollinearPointsUtil {
 		final Matrix matrix = new Matrix(pointMatrix);
 		int rank = matrix.rank();
 
-		return rank <= 1;
+		return rank <= 2;
 	}
 
 	/**
@@ -49,7 +49,13 @@ public class CollinearPointsUtil {
 	 */
 	private static double[][] pointListToMatrix(final List<Point> pointList) {
 
-		final double[][] pointsMatrix = new double[pointList.size()][2];
+		final double[][] pointsMatrix = new double[pointList.size()][pointList.size()];
+		// initialize with 1
+		for (int i = 0; i < pointsMatrix.length; i++) {
+			for (int j = 0; j < pointsMatrix[i].length; j++) {
+				pointsMatrix[i][j] = 1;
+			}
+		}
 		for (int i = 0; i < pointList.size(); i++) {
 			final Point point = pointList.get(i);
 			pointsMatrix[i][0] = point.getX();
