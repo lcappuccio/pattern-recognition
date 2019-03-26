@@ -64,25 +64,25 @@ public class SpaceController {
 	public ResponseEntity<List<List<Point>>> getLongestLineSegmentOfAtLeast(
 			@PathVariable(value = "n") final int collinearityGrade) {
 
+		// TODO refine and finish
 		final List<List<Point>> collinearPointSet = new ArrayList<>();
-		final List<Points> subsetsOfGivenSizeOrMore = SetCombinatoryUtil.getSubsetsOfGivenSizeOrMore(
-				collinearityGrade,
-				points);
-		for(Points points: subsetsOfGivenSizeOrMore) {
+		final List<Points> subsetsOfGivenSizeOrMore =
+				SetCombinatoryUtil.getSubsetsOfGivenSizeOrMore(collinearityGrade, points);
+		for(final Points points: subsetsOfGivenSizeOrMore) {
 			if (CollinearPointsUtil.isPointSetCollinear(points)) {
 				collinearPointSet.add(points.getPointList());
 			}
 		}
 
 		int largestSetSize = 0;
-		for (List<Point> points1 : collinearPointSet) {
+		for (final List<Point> points1 : collinearPointSet) {
 			if (points1.size() > largestSetSize) {
 				largestSetSize = points1.size();
 			}
 		}
 
 		final List<List<Point>> largestCollinearPointSet = new ArrayList<>();
-		for (List<Point> pointsInSet : collinearPointSet) {
+		for (final List<Point> pointsInSet : collinearPointSet) {
 			if (pointsInSet.size() >= largestSetSize) {
 				largestCollinearPointSet.add(pointsInSet);
 			}
