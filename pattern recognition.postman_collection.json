@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "7a35ed2e-1e79-4081-8585-c17d6afa7c6b",
+		"name": "pattern recognition",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Points",
+			"item": [
+				{
+					"name": "Point00 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"0\",\r\n  \"y\": \"0\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point11 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"1\",\r\n  \"y\": \"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point22 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"2\",\r\n  \"y\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point33 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"3\",\r\n  \"y\": \"3\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point33 - Add Negative",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"-3\",\r\n  \"y\": \"-3\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point01 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"0\",\r\n  \"y\": \"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point12 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"1\",\r\n  \"y\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point23 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"2\",\r\n  \"y\": \"3\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point10 - Add Negative",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"-1\",\r\n  \"y\": \"0\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point21 - Add Negative",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"-2\",\r\n  \"y\": \"-1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point17 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"1\",\r\n  \"y\": \"7\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Point42 - Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"x\": \"4\",\r\n  \"y\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/point",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"point"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Space - Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/space",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"space"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Collinear - Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/lines/4",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"lines",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
