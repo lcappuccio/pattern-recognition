@@ -18,7 +18,7 @@ public class CollinearPointsUtil {
 	 * @param points a {@link Points} to determine collinearity
 	 * @return true if collinear
 	 */
-	public static boolean isPointSetCollinear(final Points points) {
+	public boolean isPointSetCollinear(final Points points) {
 
 		if (points == null) {
 			throw new IllegalArgumentException();
@@ -47,7 +47,7 @@ public class CollinearPointsUtil {
 	 * @param pointList
 	 * @return
 	 */
-	private static double[][] pointListToMatrix(final List<Point> pointList) {
+	private double[][] pointListToMatrix(final List<Point> pointList) {
 
 		final double[][] pointsMatrix = new double[pointList.size()][pointList.size()];
 		// initialize with 1
