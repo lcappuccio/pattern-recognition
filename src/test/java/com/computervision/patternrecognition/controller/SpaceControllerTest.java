@@ -3,9 +3,13 @@ package com.computervision.patternrecognition.controller;
 import com.computervision.patternrecognition.Application;
 import com.computervision.patternrecognition.model.Point;
 import com.computervision.patternrecognition.model.Points;
+import com.computervision.patternrecognition.util.CollinearPointsUtil;
+import com.computervision.patternrecognition.util.SetCombinatoryUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -15,6 +19,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +33,10 @@ public class SpaceControllerTest {
 
 	@Autowired
 	private Points mockPoints;
+	@Mock
+	private CollinearPointsUtil mockCollinearPointsUtil;
+	@Mock
+	private SetCombinatoryUtil mockSetCombinatoryUtil;
 
 	private MockMvc sut;
 
@@ -34,7 +45,8 @@ public class SpaceControllerTest {
 
 		mockPoints = mock(Points.class);
 
-		final SpaceController spaceController = new SpaceController(mockPoints);
+		final SpaceController spaceController =
+				new SpaceController(mockPoints, mockCollinearPointsUtil, mockSetCombinatoryUtil);
 		sut = MockMvcBuilders.standaloneSetup(spaceController).build();
 	}
 
@@ -82,5 +94,33 @@ public class SpaceControllerTest {
 		sut.perform(MockMvcRequestBuilders.delete("/space")).andExpect(status().is(HttpStatus.OK.value()));
 
 		verify(mockPoints).clear();
+	}
+
+	@Test
+	public void get_longest_collinear_segments() throws Exception {
+		final int collinearityGrade = 3;
+
+		final List<Points> allPoints = new ArrayList<>();
+		final Points mockCollinearPointSetA = mock(Points.class);
+		final Points mockCollinearPointSetB = mock(Points.class);
+		final Points mockNonCollinearPointSet = mock(Points.class);
+		allPoints.add(mockCollinearPointSetA);
+		allPoints.add(mockCollinearPointSetB);
+		allPoints.add(mockNonCollinearPointSet);
+
+		doReturn(true).when(mockCollinearPointsUtil).isPointSetCollinear(mockCollinearPointSetA);
+		doReturn(true).when(mockCollinearPointsUtil).isPointSetCollinear(mockCollinearPointSetB);
+		doReturn(false).when(mockCollinearPointsUtil).isPointSetCollinear(mockNonCollinearPointSet);
+		doReturn(allPoints).when(mockSetCombinatoryUtil).getSubsetsOfGivenSizeOrMore(collinearityGrade, mockPoints);
+
+		sut.perform(MockMvcRequestBuilders.get("/lines/" + collinearityGrade))
+				.andExpect(status().is(HttpStatus.OK.value()));
+
+		final InOrder inOrder = inOrder(mockSetCombinatoryUtil, mockCollinearPointsUtil);
+		inOrder.verify(mockSetCombinatoryUtil).getSubsetsOfGivenSizeOrMore(collinearityGrade, mockPoints);
+		inOrder.verify(mockCollinearPointsUtil).isPointSetCollinear(mockCollinearPointSetA);
+		inOrder.verify(mockCollinearPointsUtil).isPointSetCollinear(mockCollinearPointSetB);
+		inOrder.verify(mockCollinearPointsUtil).isPointSetCollinear(mockNonCollinearPointSet);
+
 	}
 }

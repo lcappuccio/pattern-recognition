@@ -17,6 +17,8 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class CollinearPointsUtilTest {
 
+	private final CollinearPointsUtil sut = new CollinearPointsUtil();
+
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
@@ -25,13 +27,13 @@ public class CollinearPointsUtilTest {
 
 		expectedException.expect(IllegalArgumentException.class);
 		//noinspection ConstantConditions
-		CollinearPointsUtil.isPointSetCollinear(null);
+		sut.isPointSetCollinear(null);
 	}
 
 	@Test
 	public void empty_list() {
 		expectedException.expect(IllegalArgumentException.class);
-		CollinearPointsUtil.isPointSetCollinear(new Points(Collections.emptyList()));
+		sut.isPointSetCollinear(new Points(Collections.emptyList()));
 	}
 
 	@Test
@@ -39,7 +41,7 @@ public class CollinearPointsUtilTest {
 		final Point point = new Point(0, 0);
 		final Points points = new Points(Collections.singletonList(point));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point is collinear with itself", isPointSetCollinear);
 	}
@@ -52,7 +54,7 @@ public class CollinearPointsUtilTest {
 		final Point pointC = new Point(2, 2);
 		final Points points = new Points(Arrays.asList(pointB, pointA, pointC));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -66,7 +68,7 @@ public class CollinearPointsUtilTest {
 		final Point pointD = new Point(3, 4);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointD));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -80,7 +82,7 @@ public class CollinearPointsUtilTest {
 		final Point pointD = new Point(7, 8);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointD));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -94,7 +96,7 @@ public class CollinearPointsUtilTest {
 		final Point pointNegatives = new Point(-2, -2);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointNegatives));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -108,7 +110,7 @@ public class CollinearPointsUtilTest {
 		final Point pointNegatives = new Point(-8, -8);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC, pointNegatives));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertTrue("Point set is collinear but returns false", isPointSetCollinear);
 	}
@@ -121,7 +123,7 @@ public class CollinearPointsUtilTest {
 		final Point pointC = new Point(1, 3);
 		final Points points = new Points(Arrays.asList(pointA, pointB, pointC));
 
-		boolean isPointSetCollinear = CollinearPointsUtil.isPointSetCollinear(points);
+		boolean isPointSetCollinear = sut.isPointSetCollinear(points);
 
 		assertFalse("Point set is not collinear but returns true", isPointSetCollinear);
 	}

@@ -26,10 +26,18 @@ public class SpaceController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpaceController.class);
 	private final Points points;
+	private final CollinearPointsUtil collinearPointsUtil;
+	private final SetCombinatoryUtil setCombinatoryUtil;
 
 	@Autowired
-	public SpaceController(final Points points) {
+	public SpaceController(
+			final Points points,
+			final CollinearPointsUtil collinearPointsUtil,
+
+			final SetCombinatoryUtil setCombinatoryUtil) {
 		this.points = points;
+		this.collinearPointsUtil = collinearPointsUtil;
+		this.setCombinatoryUtil = setCombinatoryUtil;
 	}
 
 	@RequestMapping(value = "point", method = RequestMethod.POST)
@@ -64,30 +72,48 @@ public class SpaceController {
 	public ResponseEntity<List<List<Point>>> getLongestLineSegmentOfAtLeast(
 			@PathVariable(value = "n") final int collinearityGrade) {
 
-		// TODO refine and finish
-		final List<List<Point>> collinearPointSet = new ArrayList<>();
+		final List<Points> collinearPointSet = new ArrayList<>();
 		final List<Points> subsetsOfGivenSizeOrMore =
-				SetCombinatoryUtil.getSubsetsOfGivenSizeOrMore(collinearityGrade, points);
-		for(final Points points: subsetsOfGivenSizeOrMore) {
-			if (CollinearPointsUtil.isPointSetCollinear(points)) {
-				collinearPointSet.add(points.getPointList());
+				setCombinatoryUtil.getSubsetsOfGivenSizeOrMore(collinearityGrade, points);
+		for (final Points points : subsetsOfGivenSizeOrMore) {
+			if (collinearPointsUtil.isPointSetCollinear(points)) {
+				collinearPointSet.add(points);
 			}
 		}
+
+		final List<Points> largestCollinearPointSet = getLargestCollinearSetsFrom(collinearPointSet);
+
+		// extract raw list as specified in requirement
+		final List<List<Point>> formattedPointsWithoutJsonProperty = new ArrayList<>();
+		for (final Points points : largestCollinearPointSet) {
+			formattedPointsWithoutJsonProperty.add(points.getPointList());
+		}
+
+		return new ResponseEntity<>(formattedPointsWithoutJsonProperty, HttpStatus.OK);
+	}
+
+	/**
+	 * Extracts largets Points set from a {@link List<Points>}
+	 *
+	 * @param collinearPointSet a collinear {@link List<Points>} set
+	 * @return
+	 */
+	private List<Points> getLargestCollinearSetsFrom(final List<Points> collinearPointSet) {
 
 		int largestSetSize = 0;
-		for (final List<Point> points1 : collinearPointSet) {
-			if (points1.size() > largestSetSize) {
-				largestSetSize = points1.size();
+		for (final Points collinearPoints : collinearPointSet) {
+			final List<Point> collinearPointList = collinearPoints.getPointList();
+			if (collinearPointList.size() > largestSetSize) {
+				largestSetSize = collinearPointList.size();
 			}
 		}
 
-		final List<List<Point>> largestCollinearPointSet = new ArrayList<>();
-		for (final List<Point> pointsInSet : collinearPointSet) {
-			if (pointsInSet.size() >= largestSetSize) {
+		final List<Points> largestCollinearPointSet = new ArrayList<>();
+		for (final Points pointsInSet : collinearPointSet) {
+			if (pointsInSet.getPointList().size() >= largestSetSize) {
 				largestCollinearPointSet.add(pointsInSet);
 			}
 		}
-
-		return new ResponseEntity<>(largestCollinearPointSet, HttpStatus.OK);
+		return largestCollinearPointSet;
 	}
 }

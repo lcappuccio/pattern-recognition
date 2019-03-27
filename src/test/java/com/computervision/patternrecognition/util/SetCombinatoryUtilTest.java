@@ -17,6 +17,8 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class SetCombinatoryUtilTest {
 
+	private final SetCombinatoryUtil sut = new SetCombinatoryUtil();
+
 	private Points points;
 	private List<Points> pointsSet_2 = new ArrayList<>(), pointsSet_3 = new ArrayList<>();
 
@@ -47,7 +49,7 @@ public class SetCombinatoryUtilTest {
 	@Test
 	public void should_generate_all_combinations_size_2() {
 
-		final List<Points> subsetsOfSizeN = SetCombinatoryUtil.getSubsetsOfGivenSize(2, points);
+		final List<Points> subsetsOfSizeN = sut.getSubsetsOfGivenSize(2, points);
 
 		assertEquals(6, subsetsOfSizeN.size());
 		assertEquals(pointsSet_2, subsetsOfSizeN);
@@ -56,7 +58,7 @@ public class SetCombinatoryUtilTest {
 	@Test
 	public void should_generate_all_combinations_size_3() {
 
-		final List<Points> subsetsOfSizeN = SetCombinatoryUtil.getSubsetsOfGivenSize(3, points);
+		final List<Points> subsetsOfSizeN = sut.getSubsetsOfGivenSize(3, points);
 
 		assertEquals(4, subsetsOfSizeN.size());
 		assertEquals(subsetsOfSizeN, pointsSet_3);
@@ -65,7 +67,7 @@ public class SetCombinatoryUtilTest {
 	@Test
 	public void should_generate_all_combinations_from_size_2_to_3() {
 
-		final List<Points> subsetsOfSizeN = SetCombinatoryUtil.getSubsetsOfGivenSizeOrMore(2, points);
+		final List<Points> subsetsOfSizeN = sut.getSubsetsOfGivenSizeOrMore(2, points);
 
 		assertEquals(10, subsetsOfSizeN.size());
 		assertTrue(subsetsOfSizeN.containsAll(pointsSet_2));

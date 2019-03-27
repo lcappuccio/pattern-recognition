@@ -18,7 +18,7 @@ public class SetCombinatoryUtil {
 	 * @param pointList
 	 * @return all sets of size {@param setSize} or more than can be obtained from {@param pointList}
 	 */
-	public static List<Points> getSubsetsOfGivenSizeOrMore(final int setSize, final Points pointList) {
+	public List<Points> getSubsetsOfGivenSizeOrMore(final int setSize, final Points pointList) {
 
 		final List<Points> allPossibleSubsets = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class SetCombinatoryUtil {
 	 * @param points
 	 * @return
 	 */
-	static List<Points> getSubsetsOfGivenSize(final int combinationSize, final Points points) {
+	List<Points> getSubsetsOfGivenSize(final int combinationSize, final Points points) {
 
 		final List<Points> subsets = new ArrayList<>();
 
@@ -79,7 +79,7 @@ public class SetCombinatoryUtil {
 	 * @param subset    the array with the index position of the set (e.g. 0-1-2, 0-1-3, 0-2-3, 1-2-3)
 	 * @return
 	 */
-	private static Points getSubset(Points pointList, int[] subset) {
+	private Points getSubset(Points pointList, int[] subset) {
 		final List<Point> result = new ArrayList<>(subset.length);
 		for (int i = 0; i < subset.length; i++) {
 			result.add(i, pointList.getPointList().get(subset[i]));
