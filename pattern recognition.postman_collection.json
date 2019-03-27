@@ -371,6 +371,30 @@
 			]
 		},
 		{
+			"name": "Collinear - Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/lines/4",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"lines",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Space - Get",
 			"request": {
 				"method": "GET",
@@ -394,24 +418,23 @@
 			"response": []
 		},
 		{
-			"name": "Collinear - Get",
+			"name": "Space - Delete",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{port}}/lines/4",
+					"raw": "http://{{ip}}:{{port}}/space",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
 					"port": "{{port}}",
 					"path": [
-						"lines",
-						"4"
+						"space"
 					]
 				}
 			},
