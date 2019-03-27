@@ -64,6 +64,7 @@ public class SpaceController {
 	public ResponseEntity<List<Point>> removeAllPoints() {
 
 		points.clear();
+		LOGGER.info("Points in space removed");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
