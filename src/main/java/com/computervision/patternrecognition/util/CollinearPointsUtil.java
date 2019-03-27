@@ -13,7 +13,7 @@ public class CollinearPointsUtil {
 
 	/**
 	 * A set of three or more distinct points are collinear if and only if, the matrix of the coordinates of these
-	 * vectors is of rank 1 or less. (source: https://en.wikipedia.org/wiki/Collinearity)
+	 * vectors is of rank 2 or less. (source: https://en.wikipedia.org/wiki/Collinearity)
 	 *
 	 * @param points a {@link Points} to determine collinearity
 	 * @return true if collinear
