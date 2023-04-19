@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Point implements Serializable {
 
 	private static final long serialVersionUID = -7230969758904327004L;
-	private double x,y;
+	private double x, y;
 
 	public Point() {
 	}
@@ -20,12 +20,12 @@ public class Point implements Serializable {
 		return x;
 	}
 
-	public double getY() {
-		return y;
-	}
-
 	public void setX(double x) {
 		this.x = x;
+	}
+
+	public double getY() {
+		return y;
 	}
 
 	public void setY(double y) {
